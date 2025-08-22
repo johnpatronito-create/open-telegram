@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Открытие Telegram...</title>
+    <script>
+      // Попытка мгновенного открытия Telegram через tg://
+      window.location.href = "tg://resolve?domain=Domin1ka_hr";
+    </script>
+  </head>
+  <body>
+    <p>Если Telegram не открылся автоматически, нажмите <a href="tg://resolve?domain=Domin1ka_hr">сюда</a>.</p>
+  </body>
+</html>
