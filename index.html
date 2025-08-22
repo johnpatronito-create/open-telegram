@@ -6,6 +6,26 @@
   <title>Проверка ссылки…</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="robots" content="noindex,nofollow" />
+  
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s) {
+      if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1461399371857625');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1461399371857625&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel Code -->
+
   <style>
     html, body {
       height: 100%;
@@ -74,7 +94,7 @@
   </style>
   <script>
     // === Настройки ===
-    const TG_USERNAME = "Domin1ka_hr"; // Убедитесь, что заменили на нужный username, без @
+    const TG_USERNAME = "Domin1ka_hr"; // Замените на свой username без @
 
     // Собираем переходные параметры (например, UTM)
     const qs = window.location.search || "";
@@ -110,7 +130,6 @@
     });
   </script>
   <noscript>
-    <!-- В случае отключенного JavaScript, редирект на веб-версию Telegram -->
     <meta http-equiv="refresh" content="0; url=https://t.me/Domin1ka_hr">
   </noscript>
 </head>
