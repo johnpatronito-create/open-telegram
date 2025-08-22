@@ -1,14 +1,74 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Открытие Telegram...</title>
-    <script>
-      // Попытка мгновенного открытия Telegram через tg://
-      window.location.href = "tg://resolve?domain=Domin1ka_hr";
-    </script>
-  </head>
-  <body>
-    <p>Если Telegram не открылся автоматически, нажмите <a href="tg://resolve?domain=Domin1ka_hr">сюда</a>.</p>
-  </body>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Проверка ссылки…</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="noindex,nofollow" />
+  <style>
+    html,body{height:100%}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;
+         display:flex;align-items:center;justify-content:center;background:#0b0d10;color:#e7eaf0}
+    .card{max-width:560px;width:92%;background:#14171c;border:1px solid #22262c;border-radius:18px;
+          padding:28px;box-shadow:0 8px 24px rgba(0,0,0,.35);text-align:center}
+    h1{font-size:18px;margin:0 0 8px}
+    p{margin:8px 0 0;color:#b8beca;line-height:1.5}
+    .btn{display:inline-block;margin-top:16px;padding:12px 18px;border-radius:12px;
+         background:#2a323c;color:#fff;text-decoration:none}
+    .muted{font-size:12px;color:#8d96a3;margin-top:16px}
+    .spinner{width:36px;height:36px;border-radius:50%;border:3px solid #2a323c;border-top-color:#5b9cff;
+             margin:10px auto 14px;animation:spin 1s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+  </style>
+  <script>
+    // === Настройки ===
+    const TG_USERNAME = "YOUR_TG_USERNAME"; // <— замени на свой username, без @
+
+    // Собираем переходные параметры (UTM и т.п.)
+    const qs = window.location.search || "";
+    const httpsUrl = `https://t.me/${TG_USERNAME}${qs}`;
+    const tgUrl    = `tg://resolve?domain=${TG_USERNAME}`;
+
+    // Попытка открыть приложение Telegram
+    function openTelegram() {
+      // 1) моментальная попытка tg://
+      window.location.href = tgUrl;
+
+      // 2) через ~1 сек — безопасный фолбэк в веб-телеграм
+      setTimeout(() => {
+        // если приложение не открылось, браузер останется на странице —
+        // отправим пользователя в веб-версию
+        window.location.href = httpsUrl;
+      }, 1100);
+    }
+
+    // Доп. защита от блокировок авто-редиректа: ещё одна попытка чуть позже
+    let retried = false;
+    function retryOpen() {
+      if (!retried) {
+        retried = true;
+        try { window.location.href = tgUrl; } catch(e){}
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Небольшая задержка, чтобы страница «успела загрузиться»
+      setTimeout(openTelegram, 350);
+      setTimeout(retryOpen, 1600);
+    });
+  </script>
+  <noscript>
+    <meta http-equiv="refresh" content="0; url=https://t.me/YOUR_TG_USERNAME">
+  </noscript>
+</head>
+<body>
+  <div class="card" role="status" aria-live="polite">
+    <div class="spinner" aria-hidden="true"></div>
+    <h1>Проверяем соединение…</h1>
+    <p>Секундочку. Если приложение Telegram не открылось автоматически, нажмите кнопку ниже.</p>
+    <a class="btn" href="tg://resolve?domain=YOUR_TG_USERNAME">Открыть в Telegram</a>
+    <p class="muted">Предпочитаете браузер? <a href="https://t.me/YOUR_TG_USERNAME">Открыть веб-версию</a></p>
+  </div>
+</body>
 </html>
